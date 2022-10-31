@@ -1,0 +1,16 @@
+{
+  "name": "movie-reviews-db",
+  "version": "1.0.0",
+  "description": "Stores movies and their associated reviews in a SQL database, and accesses that information",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3"
+  }
+}
