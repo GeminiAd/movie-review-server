@@ -12,5 +12,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "mysql-import": "^5.0.26"
   }
 }

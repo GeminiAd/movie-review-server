@@ -7,15 +7,31 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+const Importer = require('mysql-import');
+
+const host = 'localhost';
+const user = 'root';
+const password = 'password';
+const database = 'movie_db';
+
 const db = mysql.createConnection(
     {
-        host: 'localhost',
-        user: 'root',
-        password: 'password',
-        database: 'movie_db'
+        host: host,
+        user: user,
+        password: password,
+        database: database
     },
     console.log(`Connected to the movie_db database.`)
 );
+
+const importer = new Importer({ host, user, password, database });
+
+importer.import('./db/schema.sql', './db/seeds.sql').then(() => {
+    var files_imported = importer.getImported();
+    console.log(`${files_imported.length} SQL file(s) imported.`);
+}).catch(err => {
+    console.error(err);
+});
 
 app.post('/api/add-movie', (req, res) => {
     db.query(`INSERT INTO movies (name) VALUE (?)`, req.body.name, function (err, results, fields) {
